@@ -5,13 +5,11 @@ let context = canvas.getContext("2d");
 
 const GAME_WIDTH = 800;
 const GAME_HEIGHT = 600;
-
 context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
 let game = new Game(GAME_WIDTH, GAME_HEIGHT);
 game.start();
 
-// Moving the avatar
 let lastTime = 0;
 
 // Continuously runs the game

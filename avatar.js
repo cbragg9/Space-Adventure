@@ -1,6 +1,6 @@
 export default class Avatar {
 
-    // Set the avatar width, height, starting position
+    // Set the avatar properties
     constructor(game) {
         this.gameWidth = game.gameWidth;
         this.gameHeight = game.gameHeight;
@@ -16,17 +16,19 @@ export default class Avatar {
         this.moveSpeed = 5;
         this.speed = 0;
         this.direction = "";
+        this.src = "./assets/user-avatar.png"
     }
 
     // Draw the spaceship avatar in the starting position
-    drawAvatar(context) {
+    draw(context) {
         var spaceshipImage = document.createElement("img");
-        spaceshipImage.setAttribute("src", "./assets/user-avatar.png")
+        spaceshipImage.setAttribute("src", this.src)
         context.drawImage(spaceshipImage, this.position.x, this.position.y, this.width, this.height);
     }
 
     // Update the position of the avatar
     update(dt) {
+
         // Sets direction of movement
         this.direction === "horizontal" ? this.position.x += this.speed : this.position.y += this.speed;
     
@@ -42,6 +44,7 @@ export default class Avatar {
         }
     }
 
+    // Input Functions on keydowns
     moveLeft() {
         this.direction = "horizontal";
         this.speed = -this.moveSpeed;
@@ -62,6 +65,7 @@ export default class Avatar {
         this.speed = this.moveSpeed;
     }
 
+    // Input Functions on keyups
     stop() {
         this.direction = "";
         this.speed = 0;

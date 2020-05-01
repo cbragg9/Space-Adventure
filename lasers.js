@@ -1,5 +1,6 @@
 export default class Laser {
 
+    // TO DO
     constructor(spaceship) {
         let newLaserImage = document.createElement("img");
         newLaserImage.src = "./assets/beams-in-use/basic-beam.png"
@@ -19,7 +20,7 @@ export default class Laser {
         this.position.y += this.speed.y;
     }
 
-    drawLaser(spaceship, context) {
+    draw(spaceship, context) {
         console.log(context);
         context.drawImage(this.image, this.position.x, this.position.y); 
     }

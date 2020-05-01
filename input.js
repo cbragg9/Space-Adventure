@@ -2,7 +2,7 @@
 
 export default class IntputHandler {
 
-    constructor(spaceship, context) {
+    constructor(spaceship) {
 
         // START MOVEMENT
         document.addEventListener("keydown", function(event) {
@@ -25,9 +25,7 @@ export default class IntputHandler {
                 break;
 
                 // case 32:
-                //     const newLaser = new Laser(spaceship, context);
-                //     console.log(newLaser);
-                //     newLaser.drawLaser(spaceship, context);
+                    // LASERS PEW PEW PEW
                 // break;
             }
 

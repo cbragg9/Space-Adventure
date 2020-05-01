@@ -13,23 +13,27 @@ export default class Game {
     }
 
     start() {
+
         // Create avatar in starting position
         this.spaceship = new Avatar(this);
         this.asteroid1 = new Asteroid(this);
+
+        this.gameObjects = [this.spaceship, this.asteroid1];
+
+        setInterval(() => {
+            this.asteroid = new Asteroid(this);
+            this.gameObjects.push(this.asteroid);
+        }, 1000)
 
         // Input handlers
         new IntputHandler(this.spaceship);
     }
 
     update(dt) {
-        this.spaceship.update(dt);
-
-        this.asteroid1.update(dt);
+        this.gameObjects.forEach((object) => object.update(dt));
     }
 
     draw(context) {
-        this.spaceship.drawAvatar(context);
-
-        this.asteroid1.drawAsteroid(context);
+        this.gameObjects.forEach((object) => object.draw(context));
     }
 }
