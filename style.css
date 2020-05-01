@@ -1,0 +1,19 @@
+html, body, .container {
+    width: 100%;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+    background-color: gray;
+}
+
+#gameField {
+    margin-top: 2%;
+    border: 1px solid black;
+    width: 800px;
+    height: 600px;
+    background-image: url(./assets/level1.jpg);
+}
+
+h1, h2 {
+    margin: 0;
+}
