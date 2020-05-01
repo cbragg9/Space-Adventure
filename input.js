@@ -1,6 +1,10 @@
+// import Laser from "./lasers.js";
+
 export default class IntputHandler {
 
-    constructor(spaceship) {
+    constructor(spaceship, context) {
+
+        // START MOVEMENT
         document.addEventListener("keydown", function(event) {
 
             switch (event.keyCode) {
@@ -19,12 +23,18 @@ export default class IntputHandler {
                 case 40:
                     spaceship.moveDown();
                 break;
+
+                // case 32:
+                //     const newLaser = new Laser(spaceship, context);
+                //     console.log(newLaser);
+                //     newLaser.drawLaser(spaceship, context);
+                // break;
             }
 
         })
 
+        // STOP MOVEMENT
         document.addEventListener("keyup", function() {
-
             switch (event.keyCode) {
 
                 // Left

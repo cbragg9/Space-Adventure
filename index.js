@@ -1,5 +1,4 @@
-import Avatar from "./avatar.js";
-import IntputHandler from "./input.js";
+import Game from "./game.js"
 
 let canvas = document.getElementById("gameField");
 let context = canvas.getContext("2d");
@@ -9,27 +8,25 @@ const GAME_HEIGHT = 600;
 
 context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
-// Create avatar in starting position
-let spaceship = new Avatar(GAME_WIDTH, GAME_HEIGHT);
-spaceship.drawAvatar(context);
-
+let game = new Game(GAME_WIDTH, GAME_HEIGHT);
+game.start();
 
 // Moving the avatar
 let lastTime = 0;
 
+// Continuously runs the game
 function gameLoop(timestamp) {
     let dt = timestamp - lastTime;
     lastTime = timestamp;
 
     context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
-    spaceship.update(dt);
-    spaceship.drawAvatar(context);
+
+    game.update(dt);
+    game.draw(context);
 
     requestAnimationFrame(gameLoop);
 }
 
-gameLoop();
+requestAnimationFrame(gameLoop);
 
-// Input handlers
 
-new IntputHandler(spaceship);
