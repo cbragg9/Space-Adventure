@@ -18,7 +18,7 @@ function gameLoop(timestamp) {
 
     context.clearRect(0, 0, GAME_WIDTH, GAME_HEIGHT);
 
-    game.update(dt);
+    game.update(dt, context);
     game.draw(context);
 
     requestAnimationFrame(gameLoop);

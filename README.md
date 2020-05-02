@@ -9,6 +9,6 @@
 
 ### Created using Javascript and ES6
 
-Special thanks to freeCodeCamp.org  
+Special thanks to freeCodeCamp.org and Chris Courses  
 Sprites: opengameart.org  
 Background: unsplash.com  

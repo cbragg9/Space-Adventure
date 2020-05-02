@@ -20,30 +20,35 @@ export default class Game {
         this.spaceship = new Avatar(this);
         new IntputHandler(this.spaceship, this);
         this.lives = 1;
+        this.gameSpaceshipObject = [this.spaceship];
+        this.gameAsteroidObjects = [];
+        this.gameLaserObjects = [];
     }
 
     start() {
         if (this.gamestate !== GAMESTATE.MENU) return;
 
-        this.gameObjects = [this.spaceship];
-
         setInterval(() => {
             this.asteroid = new Asteroid(this);
-            this.gameObjects.push(this.asteroid);
-        }, 100)
+            this.gameAsteroidObjects.push(this.asteroid);
+        }, 1000)
 
         this.gamestate = GAMESTATE.RUNNING;
     }
 
-    update(dt) {
+    update(dt, context) {
         if (this.lives === 0) this.gamestate = GAMESTATE.GAMEOVER;
         if (this.gamestate === GAMESTATE.PAUSED || this.gamestate === GAMESTATE.MENU || this.gamestate === GAMESTATE.GAMEOVER) return;
 
-        this.gameObjects.forEach((object) => object.update(dt));
+        this.gameSpaceshipObject.forEach((object) => object.update(dt, context));
+        this.gameAsteroidObjects.forEach((object) => object.update(dt, context));
+        this.gameLaserObjects.forEach((object) => object.update(dt, context));
     }
 
     draw(context) {
-        this.gameObjects.forEach((object) => object.draw(context));
+        this.gameSpaceshipObject.forEach((object) => object.draw(context));
+        this.gameAsteroidObjects.forEach((object) => object.draw(context));
+        this.gameLaserObjects.forEach((object) => object.draw(context));
 
         // Display Pause Screen
         if (this.gamestate === GAMESTATE.PAUSED) {
@@ -64,10 +69,10 @@ export default class Game {
             context.fillText("Click to Start", 400, 250);
             context.font = "20px Arial";
             context.fillText("Directions:", 400, 500);
-            context.fillText("Arrow Keys to Move, ESC to Pause", 400, 550);
+            context.fillText("Arrow Keys to Move, SPACEBAR to shoot, ESC to Pause", 400, 550);
         }
 
-        if (this.gamestate === GAMESTATE.GAMEOVER) {
+        if (this.gamestate === GAMESTATE.GAMEOVER) { 
             context.font = "48px Arial";
             context.fillStyle = "red";
             context.textAlign = "center";

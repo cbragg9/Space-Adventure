@@ -1,7 +1,4 @@
-// import Laser from "./lasers.js";
-
 export default class IntputHandler {
-
 
     constructor(spaceship, game) {
 
@@ -25,9 +22,11 @@ export default class IntputHandler {
                     spaceship.moveDown();
                 break;
 
-                // case 32:
-                    // LASERS PEW PEW PEW
-                // break;
+                case 32:
+                    if (game.gamestate === 1) {
+                        spaceship.shootLaser(game);
+                    }
+                break;
 
                 case 27:
                     game.togglePause();

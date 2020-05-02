@@ -1,3 +1,5 @@
+import Laser from "./lasers.js";
+
 export default class Avatar {
 
     // Set the avatar properties
@@ -69,6 +71,11 @@ export default class Avatar {
     stop() {
         this.direction = "";
         this.speed = 0;
+    }
+
+    shootLaser(game) {
+        let newLaser = new Laser(game);
+        game.gameLaserObjects.push(newLaser);
     }
 
 }
