@@ -59,6 +59,7 @@ export default class Asteroid {
         var distance = Math.sqrt(dx * dx + dy * dy);
         if (distance < spaceshipPosition.radius + asteroidPosition.radius) {
             this.game.spaceship.src = "./assets/ship-explosions/l-explosion.png"
+            this.game.lives--;
         }
 
     }

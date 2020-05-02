@@ -2,7 +2,8 @@
 
 export default class IntputHandler {
 
-    constructor(spaceship) {
+
+    constructor(spaceship, game) {
 
         // START MOVEMENT
         document.addEventListener("keydown", function(event) {
@@ -27,6 +28,10 @@ export default class IntputHandler {
                 // case 32:
                     // LASERS PEW PEW PEW
                 // break;
+
+                case 27:
+                    game.togglePause();
+                break;
             }
 
         })
@@ -64,5 +69,16 @@ export default class IntputHandler {
                 break;
             }
         })
+
+        // START GAME ON CLICK
+        const gamefieldEl = document.getElementById("gameField");
+        gamefieldEl.addEventListener("click", function() {
+            if (game.gamestate === 2) {
+                game.start();
+            } else if (game.gamestate === 3) {
+                location.reload();
+            }
+        });
+
     }
 }
