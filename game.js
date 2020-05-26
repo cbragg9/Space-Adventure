@@ -7,7 +7,8 @@ const GAMESTATE = {
     PAUSED: 0,
     RUNNING: 1,
     MENU: 2,
-    GAMEOVER: 3
+    GAMEOVER: 3,
+    LEVELEDUP: 4
 }
 
 export default class Game {
@@ -31,14 +32,17 @@ export default class Game {
         setInterval(() => {
             this.asteroid = new Asteroid(this);
             this.gameAsteroidObjects.push(this.asteroid);
-        }, 1000)
+        }, 100)
 
         this.gamestate = GAMESTATE.RUNNING;
     }
 
     update(dt, context) {
         if (this.lives === 0) this.gamestate = GAMESTATE.GAMEOVER;
-        if (this.gamestate === GAMESTATE.PAUSED || this.gamestate === GAMESTATE.MENU || this.gamestate === GAMESTATE.GAMEOVER) return;
+        if (this.gamestate === GAMESTATE.PAUSED 
+            || this.gamestate === GAMESTATE.MENU 
+            || this.gamestate === GAMESTATE.GAMEOVER
+            || this.gamestate === GAMESTATE.LEVELEDUP) return;
 
         this.gameSpaceshipObject.forEach((object) => object.update(dt, context));
         this.gameAsteroidObjects.forEach((object) => object.update(dt, context));
@@ -73,12 +77,12 @@ export default class Game {
         }
 
         if (this.gamestate === GAMESTATE.GAMEOVER) { 
-            context.font = "48px Arial";
+            context.font = "60px Arial";
             context.fillStyle = "red";
             context.textAlign = "center";
-            context.fillText("GAME OVER", 400, 250);
             context.font = "30px Arial";
-            context.fillText("Click to start over", 400, 300);
+            context.fillText("GAME OVER!", 400, 200);
+            context.fillText("Click to play again", 400, 300);
         }
 
     }

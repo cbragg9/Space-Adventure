@@ -96,6 +96,7 @@ export default class Asteroid {
 
     }
 
+    // Draw explosion in last asteroid spot
     createExplosion(context, x, y, w, h) {
         let explosionImage = document.createElement("img");
         explosionImage.src = "./assets/ship-explosions/m-explosion.png";
